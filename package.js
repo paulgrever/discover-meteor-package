@@ -9,7 +9,8 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.0.2');
   api.use('ecmascript');
-  api.addFiles('errors.js');
+  api.use(['minimongo', 'mongo-livedata', 'templating'], 'client');
+  api.addFiles(['errors.js', 'errors_list.html', 'errors_list.js'], 'client');
 });
 
 Package.onTest(function(api) {
@@ -17,4 +18,7 @@ Package.onTest(function(api) {
   api.use('tinytest');
   api.use('paulgrever:errors');
   api.addFiles('errors-tests.js');
+
+  if (api.export) 
+    api.export('Errors');
 });
